@@ -1,11 +1,13 @@
-% insert(+E, +P, +L1, -L2).
-% Given element E, list L1 and position P, L2 is the result of inserting E in L1
-% at position P (zero-based indexing).
-insert_at(E, P, L1, L2) :-
-    length(Front, P),
-    append(Front, Back, L1),
-    append(Front, [E], NewFront),
-    append(NewFront, Back, L2).
+% remove(+E, +L1, -L2).
+% Given element E and list L1, L2 is the result of remove E from anywhere in L1.
+remove(E, [E|L], L).
+remove(E, [X|L1], [X|L2]) :-
+    remove(E, L1, L2).
+
+% insert(+E, +L1, -L2).
+% Given element E and list L1, L2 is the result of inserting E anywhere in L1.
+insert(E, L1, L2) :-
+    remove(E, L2, L1).
 
 % gen_list(+C, -L).
 % Given natural number C, L is a list of C zeros.
@@ -15,16 +17,11 @@ gen_list(C, [0|L]) :-
     C1 is C - 1,
     gen_list(C1, L).
 
-% gen_lists(+C, +L, +E, -Ls).
-% Given natural number C, list L and element E, Ls is the list of C lists that
-% are created if we insert E in the first C positions of L.
-gen_lists(0, _, _, []).
-gen_lists(C, L, E, Ls) :-
-    C > 0,
-    C1 is C - 1,
-    gen_lists(C1, L, E, NLs),
-    insert_at(E, C1, L, NL),
-    append(NLs, [NL], Ls).
+% gen_lists(+L, +E, -Ls).
+% Given natural number C, list L and element E, Ls is the list of lists that
+% occur by inserting element E at all different positions in L.
+gen_lists(L, E, Ls) :-
+    findall(NL, insert(E, L, NL), Ls).
 
 % gen_identity_matrix(+D, +E, -M).
 % Given dimension M and element E, M is an DxD matrix identity matrix of E.
@@ -32,7 +29,7 @@ gen_identity_matrix(0, _, []).
 gen_identity_matrix(D, E, M) :-
     ND is D - 1,
     gen_list(ND, L),
-    gen_lists(D, L, E, M).
+    gen_lists(L, E, M).
 
 % cv_mult(+C, +V, -RV).
 % Given constant C and vector V, RV is the result of their multiplication.
