@@ -1,5 +1,5 @@
 :- module(matrix).
-:- use_module("../vector/vector.pl").
+:- use_module("vector").
 
 :- export mm_add/3.
 :- export multi_mm_add/2.
