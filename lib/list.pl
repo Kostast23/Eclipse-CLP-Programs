@@ -1,6 +1,5 @@
 :- module(list).
 
-:- export generate_list/2.
 :- export generate_list/3.
 :- export remove/3.
 :- export insert/3.
@@ -9,13 +8,6 @@
 :- export run_length_decoding/2.
 :- export halve/3.
 
-% generate_list(+C, -L).
-% Given natural number C, L is a list of C count zeros.
-generate_list(0, []).
-generate_list(C, [0|L]) :-
-    C > 0,
-    C1 is C - 1,
-    generate_list(C1, L).
 
 % generate_list(+C, +E, -L).
 % Given natural number C and element E, L is a list of C count Es.
