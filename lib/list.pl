@@ -4,6 +4,7 @@
 :- export halve/3.
 :- export insert/3.
 :- export map_list_to_position/2.
+:- export multi_append/2.
 :- export remove/3.
 :- export sublist/2.
 
@@ -49,6 +50,14 @@ map_list_to_position([], _, []).
 map_list_to_position([H|T], Pos, [(H, Pos)|MT]) :-
     NextPos is Pos + 1,
     map_list_to_position(T, NextPos, MT).
+
+
+% multi_append(+Lists, ?FinalList).
+% FinalList is obtained by concatenating all the Lists.
+multi_append([], []).
+multi_append([L|Ls], FinalList) :-
+    multi_append(Ls, TempList),
+    append(L, TempList, FinalList).
 
 
 % remove(+E, +L1, -L2).
