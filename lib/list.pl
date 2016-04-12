@@ -5,7 +5,6 @@
 :- export insert/3.
 :- export sublist/2.
 :- export map_list_to_position/2.
-:- export run_length_decoding/2.
 :- export halve/3.
 
 
@@ -45,15 +44,6 @@ map_list_to_position([], _, []).
 map_list_to_position([H|T], Pos, [(H, Pos)|MT]) :-
     NextPos is Pos + 1,
     map_list_to_position(T, NextPos, MT).
-
-% run_length_decoding(+Enc, -Dec).
-% Given an encoded run-length list of (run-length, element) tuples, produces
-% the decoded list.
-run_length_decoding([], []).
-run_length_decoding([(C, E)|T], L) :-
-    generate_list(C, E, L1),
-    run_length_decoding(T, L2),
-    append(L1, L2, L).
 
 % halve(+L, -L1, -L2).
 % Given list L, L1 and L2 are the two halfs of L.
