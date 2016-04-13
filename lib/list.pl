@@ -1,12 +1,19 @@
 :- module(list).
 
+:- export first/2.
 :- export generate_list/3.
 :- export halve/3.
 :- export insert/3.
+:- export last/2.
 :- export map_list_to_position/2.
 :- export multi_append/2.
 :- export remove/3.
 :- export sublist/2.
+
+
+% first(?Xs, ?X).
+% X is the first element of list Xs.
+first([X|_], X).
 
 
 % generate_list(+C, +E, -L).
@@ -39,6 +46,13 @@ halve([_,_|T], [X|L], [X|L1], L2) :-
 % Given element E and list L1, L2 is the result of inserting E anywhere in L1.
 insert(E, L1, L2) :-
     remove(E, L2, L1).
+
+
+% last(?L, ?X).
+% Element X is the last element of list L.
+last([X], X).
+last([_|T], X) :-
+    last(T, X).
 
 
 % map_list_to_position(+L, -ML).
