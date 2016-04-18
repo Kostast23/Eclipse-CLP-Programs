@@ -4,6 +4,7 @@
 % langford(+N, -L).
 % Given number N > 1, L is the corresponding Langford sequence.
 % If there are more than one sequences they can be found through recursion.
+% For every sequence there is a symmetric sequence that will be found.
 langford(N, L) :-
     N > 0,
     Len is 2 * N,
