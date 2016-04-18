@@ -12,8 +12,7 @@ langford(N, L) :-
     
 langford_subsequence(N, S) :-
     length(Mid, N),
-    append([N], Mid, S1),
-    append(S1, [N], S).
+    append([N|Mid], [N], S).
 
 langford_subsequences(0, _).
 langford_subsequences(N, L) :-
