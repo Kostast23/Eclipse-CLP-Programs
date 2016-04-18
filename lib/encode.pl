@@ -1,4 +1,5 @@
 :- module(encode).
+:- use_module("list").
 
 :- export run_length_decoding/2.
 
