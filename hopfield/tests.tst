@@ -1,4 +1,11 @@
-use_module("hopfield").
+/*
+To run the tests open the command line eclipse environment and then execute
+- lib(test_util).           to load the test_util library
+- use_module(hopfield).     to load the tested hopfield module
+- ["tests.tst"].            to load the tests.tst file
+- test(tests).              to execute the tests
+*/
+
 
 hopfield([[1,1,-1], [-1,-1,-1]], W) should_give
 W = [[0, 2, 0],
