@@ -16,7 +16,7 @@ generate_lists(L, E, Ls) :-
 generate_identity_matrix(0, _, []).
 generate_identity_matrix(D, E, M) :-
     ND is D - 1,
-    generate_list(ND, L),
+    generate_list(ND, 0, L),
     generate_lists(L, E, M).
 
 % vector_length(+Vs, -L).
