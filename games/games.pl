@@ -1,3 +1,9 @@
+:- module(games).
+
+:- export games/5.
+:- export alt_games/5.
+
+
 % one_between(+X, +Y, ?Ζ).
 % Z is a number between X and Y. X <= Z <= Y.
 one_between(X, Y, X) :-
@@ -40,7 +46,7 @@ games([P|Ps], Tokens, MaxTokens, Refill, [T|Ts], TP) :-
     games(Ps, RemTokens, MaxTokens, Refill, Ts, TP1),
     TP is TP1 + T * P.
 
-% games(Pleasures, Tokens, Refill, Times, Pleasure).
+% alt_games(Pleasures, Tokens, Refill, Times, Pleasure).
 % The Times each game is played and the Pleasure are obtained by finding a
 % possible Times configuration and its pleasure and comparing it with every
 % other configuration's pleasure to determine if it is the maximum.
