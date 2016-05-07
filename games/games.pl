@@ -13,7 +13,7 @@ one_between(X, Y, Z) :-
     X1 is X + 1,
     one_between(X1, Y, Z).
 
-% games(Pleasures, Tokens, MaxTokens, Refill, Times, TotalPleasure).
+% games(+Pleasures, +Tokens, +MaxTokens, +Refill, ?Times, ?TotalPleasure).
 % Given the pleasure from each game in Pleasures list, a number of Tokens, the
 % number of MaxTokens and a number of Refill Tokens, Times is a list of the
 % times each game is played and TotalPleasure is the obtained pleasure.
@@ -46,7 +46,7 @@ games([P|Ps], Tokens, MaxTokens, Refill, [T|Ts], TP) :-
     games(Ps, RemTokens, MaxTokens, Refill, Ts, TP1),
     TP is TP1 + T * P.
 
-% alt_games(Pleasures, Tokens, Refill, Times, Pleasure).
+% alt_games(+Pleasures, +Tokens, +Refill, ?Times, ?Pleasure).
 % The Times each game is played and the Pleasure are obtained by finding a
 % possible Times configuration and its pleasure and comparing it with every
 % other configuration's pleasure to determine if it is the maximum.
@@ -71,14 +71,14 @@ maxlist([X|Xs], CurrentMax, Max) :-
     X =< CurrentMax,
     maxlist(Xs, CurrentMax, Max).
 
-% find_max_pleasure(Pleasures, Tokens, Refill, MaxPleasure).
+% find_max_pleasure(+Pleasures, +Tokens, +Refill, ?MaxPleasure).
 % MaxPleasure is obtained by finding all the possible pleasures and then
 % selecting the maximum.
 find_max_pleasure(Ps, T, R, Max) :-
     findall(P, games(Ps, T, T, R, _, P), Pleasures),
     maxlist(Pleasures, Max).
 
-% games(Pleasures, Tokens, Refill, Times, Pleasure).
+% games(+Pleasures, +Tokens, +Refill, ?Times, ?Pleasure).
 % The Times each game is played and the Pleasure are obtained by finding all the
 % possible Times configurations and their pleasures and then selecting the ones
 % that match the maximum pleasure.
