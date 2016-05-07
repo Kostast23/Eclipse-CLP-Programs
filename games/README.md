@@ -16,7 +16,11 @@ Alternative output format:
 * P is the maximum pleasure that can be obtained.
 
 We define the following predicates that solve the problem.
-* Procedural solution: games(Ps, T, R, Ts, P).
-* Declarative solution: alt_games(Ps, T, R, Ts, P).
+* Procedural solution: games(Ps, T, R, Ts, P)      - games module
+* Declarative solution: alt_games(Ps, T, R, Ts, P) - games module
+* CSP solution: games_csp(Ps, T, R, Ts, P)         - games_csp module
 
 Multiple maximum pleasure solutions can be found via backtracking if they exist.
+
+The CSP solution seems to be the most efficient, solving bigger problems
+faster. The procedural solution comes second and the declarative last.
